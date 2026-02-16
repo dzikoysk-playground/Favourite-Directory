@@ -34,7 +34,7 @@ class FavouriteTreeStructureProvider : TreeStructureProvider, DumbAware {
         if (project == null) return emptyList()
         val storage = FavouriteDirectoryStorage.getInstance(project)
         val directories = storage.state.directoryPaths.mapNotNull {
-            val directory = VfsUtil.findFile(Path(it), true) ?: return@mapNotNull null
+            val directory = VfsUtil.findFile(Path(it), false) ?: return@mapNotNull null
             logger.debug("Favourite directory: $it")
             return@mapNotNull PsiDirectoryFactory.getInstance(project).createDirectory(directory)
         }
